@@ -17,27 +17,27 @@ const template = (
   </div>
 );
 
-const user = {
-  age: 3,
-  location: 'Los Angeles'
+let count = 0;
+const addOne = () => {
+  console.log('add one');
 };
-
-function getLocation(location) {
-  if (location) {
-    return <p>Location: {location}</p>;
-  } else {
-    return 'Unknown';
-  }
-}
-
-const template2 = (
+const subtractOne = () => {
+  console.log('subtract one');
+};
+const reset = () => {
+  console.log('reset');
+};
+const templateTwo = (
   <div>
-    <h1>{user.name ? user.name : 'Anonymous'}</h1>
-    <p>Age: {user.age}</p>
-    {getLocation(user.location)}
+    <h1>Count: {count}</h1>
+    <button onClick={addOne} id="my-id" className="button">
+      +1
+    </button>
+    <button onClick={subtractOne}> - 1</button>
+    <button onClick={reset}>Reset</button>
   </div>
 );
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
