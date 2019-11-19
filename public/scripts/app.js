@@ -21,7 +21,13 @@ var onFormSubmit = function onFormSubmit(e) {
   }
 };
 
-var remove = function remove(e) {
+var onMakeDecision = function onMakeDecision() {
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  var option = app.options[randomNum];
+  alert(option);
+};
+
+var onRemove = function onRemove(e) {
   e.preventDefault();
   app.options = [];
   renderTemplate();
@@ -49,13 +55,13 @@ var renderTemplate = function renderTemplate() {
       app.options.length > 0 ? 'Here are your options' : 'No options'
     ),
     React.createElement(
-      'p',
-      null,
-      app.options.length
+      'button',
+      { disabled: app.options.length === 0, onClick: onMakeDecision },
+      'What will I learn?'
     ),
     React.createElement(
       'button',
-      { onClick: remove },
+      { onClick: onRemove },
       ' Remove All '
     ),
     React.createElement(
