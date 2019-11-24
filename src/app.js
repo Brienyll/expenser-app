@@ -1,3 +1,10 @@
+const obj = {
+  name: 'Brielle',
+  getName() {
+    return this.name;
+  }
+};
+
 class IndecisionApp extends React.Component {
   render() {
     const title = 'Indecision';
@@ -39,7 +46,13 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
-  removeAll() {}
+  constructor(props) {
+    super(props);
+    this.removeAll = this.removeAll.bind(this);
+  }
+  removeAll() {
+    console.log(this.props.options);
+  }
   render() {
     return (
       <div>
