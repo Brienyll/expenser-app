@@ -8,6 +8,9 @@ class Visible extends React.Component {
   }
   visToggle() {
     this.setState(prevState => {
+      const randomNum = Math.floor(Math.random() * app.options.length);
+      const option = app.options[randomNum];
+      alert(option);
       return {
         vis: !prevState.vis
       };
