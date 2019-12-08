@@ -1,5 +1,7 @@
-const isAdult = n => n > 17;
+const isAdult = n => n >= 18;
 
-const canDrink = n => n > 20;
+const canDrink = n => n >= 22;
 
-export { isAdult, canDrink };
+const isSenior = n => n >= 65;
+
+export { isAdult, canDrink, isSenior as default };
