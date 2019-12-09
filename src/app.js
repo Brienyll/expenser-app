@@ -1,11 +1,5 @@
-// import { square, add } from './utils.js';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// console.log('app.js is running!!');
-// console.log(square(4));
-// console.log(add(30, 70));
-
-import isSenior, { isAdult, canDrink } from './person.js';
-
-console.log(isAdult(17));
-console.log(canDrink(21));
-console.log(isSenior(65));
+const template = React.createElement('p', {}, 'testing 123');
+ReactDOM.render(template, document.getElementById('app'));
