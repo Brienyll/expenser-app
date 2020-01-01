@@ -121,17 +121,25 @@ const filterReducer = (state = filterReducerDefaultState, action) => {
 
 // get visible expenses
 const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
-  return expenses.filter(expense => {
-    const startDateMatch =
-      typeof startDate !== 'number' || expense.createdAt >= startDate;
-    const endDateMatch =
-      typeof endDate !== 'number' || expense.endDate >= createdAt;
-    const textMatch =
-      typeof text !== 'string' ||
-      expense.description.toLowerCase().includes(text.toLowerCase());
+  return expenses
+    .filter(expense => {
+      const startDateMatch =
+        typeof startDate !== 'number' || expense.createdAt >= startDate;
+      const endDateMatch =
+        typeof endDate !== 'number' || expense.endDate >= createdAt;
+      const textMatch =
+        typeof text !== 'string' ||
+        expense.description.toLowerCase().includes(text.toLowerCase());
 
-    return startDateMatch && endDateMatch && textMatch;
-  });
+      return startDateMatch && endDateMatch && textMatch;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'date') {
+        return a.createdAt < b.createdAt ? 1 : -1;
+      } else if (sortBy === 'amount') {
+        return a.amount < b.amount ? 1 : -1;
+      }
+    });
 };
 
 //Store Creation
@@ -150,7 +158,7 @@ store.subscribe(() => {
 });
 
 const expenseOne = store.dispatch(
-  addExpense({ description: 'Rent', amount: 100, createdAt: 1000 })
+  addExpense({ description: 'Rent', amount: 100, createdAt: -211000 })
 );
 const expenseTwo = store.dispatch(
   addExpense({ description: 'Burger', amount: 300, createdAt: -1000 })
@@ -163,10 +171,10 @@ const expenseTwo = store.dispatch(
 // store.dispatch(setTextFilter('Rent'));
 // store.dispatch(setTextFilter());
 
-// store.dispatch(sortByAmount());
+store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 
-store.dispatch(setStartDate(125));
+//store.dispatch(setStartDate(125));
 // store.dispatch(setStartDate());
 // store.dispatch(setEndDate(1250));
 const demoState = {
