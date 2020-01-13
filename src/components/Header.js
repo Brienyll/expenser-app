@@ -5,16 +5,13 @@ const Header = () => (
   <header>
     <h1>Expense</h1>
     <NavLink to="/" activeClassName="is-active" exact={true}>
-      {' '}
-      Home{' '}
+      Home
     </NavLink>
     <NavLink to="/create" activeClassName="is-active">
-      {' '}
-      Create Expense{' '}
+      Create Expense
     </NavLink>
     <NavLink to="/help" activeClassName="is-active">
-      {' '}
-      Help{' '}
+      Help
     </NavLink>
   </header>
 );
