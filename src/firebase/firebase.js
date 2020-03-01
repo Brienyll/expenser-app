@@ -12,9 +12,16 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-firebase
-  .database()
-  .ref()
-  .set({
-    name: 'Brix Angeles'
-  });
+const database = firebase.database();
+database.ref().set({
+  name: 'Brix Angeles',
+  location: {
+    city: 'Los Angeles',
+    country: 'United States'
+  }
+});
+
+database.ref('attributes').set({
+  height: 78,
+  weight: 216
+});
