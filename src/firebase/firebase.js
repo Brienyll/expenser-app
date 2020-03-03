@@ -13,15 +13,31 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
-database.ref().set({
-  name: 'Brix Angeles',
-  location: {
-    city: 'Los Angeles',
-    country: 'United States'
-  }
-});
+database
+  .ref()
+  .set({
+    name: 'Brix Angeles',
+    location: {
+      city: 'Los Angeles',
+      country: 'United States'
+    }
+  })
+  .then(() => {
+    console.log('Data is saved');
+  })
+  .catch(err => {
+    console.log('Failed', err);
+  });
 
-database.ref('attributes').set({
-  height: 78,
-  weight: 216
-});
+database
+  .ref('attributes')
+  .set({
+    height: 78,
+    weight: 216
+  })
+  .then(() => {
+    console.log('Data updated');
+  })
+  .catch(err => {
+    console.log('Error', err);
+  });
