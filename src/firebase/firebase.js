@@ -17,6 +17,11 @@ database
   .ref()
   .set({
     name: 'Brix Angeles',
+    stressLevel: 6,
+    job: {
+      title: 'Web Developer',
+      company: 'Tinder'
+    },
     location: {
       city: 'Los Angeles',
       country: 'United States'
@@ -29,15 +34,8 @@ database
     console.log('Failed', err);
   });
 
-database
-  .ref('attributes')
-  .set({
-    height: 78,
-    weight: 216
-  })
-  .then(() => {
-    console.log('Data updated');
-  })
-  .catch(err => {
-    console.log('Error', err);
-  });
+database.ref().update({
+  stressLevel: 9,
+  'job/company': 'TikTok',
+  'location/city': 'Culver'
+});
