@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import { $CombinedState } from 'redux';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDXNjIWc9YnBnA1R_Bh2IdKByUu-FVmzQE',
@@ -13,29 +14,67 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
-database
-  .ref()
-  .set({
-    name: 'Brix Angeles',
-    stressLevel: 6,
-    job: {
-      title: 'Web Developer',
-      company: 'Tinder'
-    },
-    location: {
-      city: 'Los Angeles',
-      country: 'United States'
-    }
-  })
-  .then(() => {
-    console.log('Data is saved');
-  })
-  .catch(err => {
-    console.log('Failed', err);
-  });
 
-database.ref().update({
-  stressLevel: 9,
-  'job/company': 'TikTok',
-  'location/city': 'Culver'
+database.ref().on('value', snapshot => {
+  const val = snapshot.val();
+  console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
 });
+
+// const onValueChange = database.ref().on(
+//   'value',
+//   snapshot => {
+//     console.log(snapshot.val());
+//   },
+//   e => {
+//     console.log('Error', e);
+//   }
+// );
+
+// setTimeout(() => {
+//   database.ref('age').set(29);
+// }, 3500);
+
+// setTimeout(() => {
+//   database.ref().off('value', onValueChange);
+// }, 7000);
+
+// setTimeout(() => {
+//   database.ref('age').set(33);
+// }, 10500);
+// database
+//   .ref()
+//   .once('value')
+//   .then(snapshot => {
+//     const val = snapshot.val();
+//     console.log(val);
+//   })
+//   .catch(err => {
+//     console.log('Error fetching data', e);
+//   });
+
+// database
+//   .ref()
+//   .set({
+//     name: 'Brix Angeles',
+//     stressLevel: 6,
+//     job: {
+//       title: 'Web Developer',
+//       company: 'Tinder'
+//     },
+//     location: {
+//       city: 'Los Angeles',
+//       country: 'United States'
+//     }
+//   })
+//   .then(() => {
+//     console.log('Data is saved');
+//   })
+//   .catch(err => {
+//     console.log('Failed', err);
+//   });
+
+// database.ref().update({
+//   stressLevel: 9,
+//   'job/company': 'TikTok',
+//   'location/city': 'Culver'
+// });
