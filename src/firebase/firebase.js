@@ -15,26 +15,17 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-database.ref('Expenses').push({
-  description: 'Rent',
-  note: 'additional notes',
-  amount: 800,
-  createdAt: 8732190370
-});
+// database.ref('Expenses').on('value', snapshot => {
+//   const expenses = [];
+//   snapshot.forEach(childSnapshot => {
+//     expenses.push({
+//       id: childSnapshot.key,
+//       ...childSnapshot.val()
+//     });
+//   });
+//   console.log(expenses);
+// });
 
-database.ref('Expenses').push({
-  description: 'Insurance',
-  note: 'Car Insurance',
-  amount: 90,
-  createdAt: 301938192
-});
-
-database.ref('Expenses').push({
-  description: 'Credit',
-  note: 'Capital One',
-  amount: 75,
-  createdAt: 1378912378
-});
 // database.ref('notes/-M32DnBvrXxmg5zslKzT').remove();
 
 // database.ref('notes').push({
