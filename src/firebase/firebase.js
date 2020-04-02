@@ -1,5 +1,4 @@
 import * as firebase from 'firebase';
-import { $CombinedState } from 'redux';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDXNjIWc9YnBnA1R_Bh2IdKByUu-FVmzQE',
@@ -15,6 +14,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
+export { firebase, database as default };
 // database.ref('Expenses').on('value', snapshot => {
 //   const expenses = [];
 //   snapshot.forEach(childSnapshot => {
